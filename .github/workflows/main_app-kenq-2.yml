@@ -8,23 +8,33 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
         with:
           node-version: '20.x'
+          cache: 'npm'
 
       - name: Install & Build
         run: |
           npm ci
           npm run build
 
-      - name: Prepare deploy folder
+      - name: Prepare deploy folder (Next.js standalone)
         run: |
+          rm -rf deploy
           mkdir -p deploy/.next
+          # standalone 一式を deploy 直下へ（server.js を含む）
           cp -r .next/standalone/* deploy/
+          # 静的ファイルを所定の場所に
           cp -r .next/static deploy/.next/static
+          # public があれば同梱
           [ -d public ] && cp -r public deploy/public || true
+          # （任意）起動用に package.json も同梱
           [ -f package.json ] && cp package.json deploy/ || true
 
       - name: Deploy to Azure Web App
@@ -34,3 +44,4 @@ jobs:
           slot-name: 'Production'
           package: ./deploy
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CD12AE63977F4F9AA66289B6BC33CBE5 }}
+
