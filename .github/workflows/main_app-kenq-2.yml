@@ -59,6 +59,10 @@ jobs:
         with:
           name: node-app
 
+       # ★ これを一度入れて、Zipのルートが正しいか確認
+      - name: Show release.zip content
+        run: unzip -l release.zip | sed -n '1,200p'
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
@@ -66,4 +70,5 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5D79279DF5FE415E99C50C27A2A7E516 }}
           package: release.zip
+
 
