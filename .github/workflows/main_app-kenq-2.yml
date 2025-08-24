@@ -10,29 +10,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: '20.x'
 
-      - name: Install deps & build Next.js
+      - name: Install & Build
         run: |
           npm ci
-          # standalone 出力（Next 13+推奨）
           npm run build
 
       - name: Prepare deploy folder
         run: |
-          mkdir -p deploy
-          # Next.js standalone 方式の必須物をまとめる
-          cp -r .next/standalone/* deploy/
           mkdir -p deploy/.next
+          cp -r .next/standalone/* deploy/
           cp -r .next/static deploy/.next/static
           [ -d public ] && cp -r public deploy/public || true
-          # package.json, next.config.js 等が必要なら適宜コピー
           [ -f package.json ] && cp package.json deploy/ || true
 
-      - name: Deploy to Azure Web App (no artifacts)
+      - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'app-kenq-2'
