@@ -36,9 +36,6 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-          // 現在はauth_testのバックエンドを使用
-          // 新しいバックエンドができたら、このURLを置き換える
-          console.log('API URL:', process.env.API_URL);
           const res = await axios.post(`${process.env.API_URL}/auth/login`, {
             company_user_name: credentials?.company_user_name,
             password: credentials?.password,

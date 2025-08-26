@@ -133,7 +133,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
             localFormData.deadline && localFormData.deadline.trim() !== ""
               ? localFormData.deadline
               : "2099-12-31", // ←★ここが重要
-          company_user_id: 1, // ←ログイン中の企業ユーザーID（仮で 1 を設定）
+          // company_user_idはサーバーサイドでセッションから取得
         }),
       });
 
@@ -201,7 +201,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          company_user_id: 1, // 仮のユーザーID
+          // company_user_idはサーバーサイドでセッションから取得
           project_title: localFormData.title,
           project_content: localFormData.background,
           industry: localFormData.industry || "",
