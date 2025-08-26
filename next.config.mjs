@@ -14,7 +14,7 @@ const nextConfig = {
             value: process.env.NODE_ENV === 'production'
               ? // 本番環境: 厳格なCSP
                 `default-src 'self'; ` +
-                `script-src 'self'; ` +
+                `script-src 'self' 'unsafe-inline'; ` +
                 `style-src 'self' 'unsafe-inline' fonts.googleapis.com; ` +
                 `font-src 'self' fonts.gstatic.com; ` +
                 `img-src 'self' data:; ` +
