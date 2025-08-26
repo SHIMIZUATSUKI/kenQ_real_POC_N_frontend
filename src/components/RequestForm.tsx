@@ -117,7 +117,6 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
     setLoading(true); // ← しばらくお待ちください。の表示のため
 
     try {
-      //const response = await fetch("https://app-kenq-1-azf7d4eje9cgaah2.canadacentral-01.azurewebsites.net/ai-diagnosis", {
       const apiBaseUrl = process.env.NEXT_PUBLIC_AZURE_API_URL;
       console.log("Environment check:", {
         NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
@@ -212,7 +211,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
     setIsResearching(true);
 
     try {
-      const apiBaseUrl = process.env.NEXT_PUBLIC_AZURE_API_URL || "https://app-kenq-7-h7gre0afdgdbbzhy.canadacentral-01.azurewebsites.net";
+      const apiBaseUrl = process.env.NEXT_PUBLIC_AZURE_API_URL;
       console.log("Project registration API call:", {
         NEXT_PUBLIC_AZURE_API_URL: process.env.NEXT_PUBLIC_AZURE_API_URL,
         apiBaseUrl: apiBaseUrl,
