@@ -117,18 +117,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
     setLoading(true); // ← しばらくお待ちください。の表示のため
 
     try {
-      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
-      console.log("Environment check:", {
-        NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
-        NEXT_PUBLIC_AZURE_API_URL: process.env.NEXT_PUBLIC_AZURE_API_URL,
-        apiBaseUrl: apiBaseUrl
-      });
-
-      if (!apiBaseUrl) {
-        throw new Error("API URLが設定されていません。環境変数を確認してください。");
-      }
-      
-      const response = await fetch(`${apiBaseUrl}/ai-diagnosis`, {
+      const response = await fetch('/api/ai-diagnosis', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -211,14 +200,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
     setIsResearching(true);
 
     try {
-      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
-      console.log("Project registration API call:", {
-        NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
-        apiBaseUrl: apiBaseUrl,
-        endpoint: `${apiBaseUrl}/project-registration`
-      });
-      
-      const response = await fetch(`${apiBaseUrl}/project-registration`, {
+      const response = await fetch('/api/project-registration', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

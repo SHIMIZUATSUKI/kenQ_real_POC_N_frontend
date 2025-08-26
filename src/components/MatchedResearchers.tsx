@@ -46,8 +46,7 @@ export default function MatchedResearchers({
         }
         
         // フォールバック: APIから取得
-        const apiUrl = `${process.env.NEXT_PUBLIC_AZURE_API_URL}/matching-results?project_id=${projectId}`;
-        const response = await fetch(apiUrl, {
+        const response = await fetch(`/api/matching-results?project_id=${projectId}`, {
           method: "GET",
           headers: {
             "Cache-Control": "no-cache, no-store, must-revalidate",
@@ -116,7 +115,7 @@ export default function MatchedResearchers({
     if (selectedResearchers.length === 0) return;
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_AZURE_API_URL}/offers`, {
+      const response = await fetch('/api/offers', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -175,7 +174,6 @@ export default function MatchedResearchers({
           (r.researcher_info?.researcher_id || r.matching_id).toString() === researcherId
         );
         
-        const apiUrl = `${process.env.NEXT_PUBLIC_AZURE_API_URL}/favorites`;
         const requestBody = {
           researcher_id: Number(researcherId),
           project_id: Number(projectId),
@@ -183,10 +181,9 @@ export default function MatchedResearchers({
           favorite_status: 1, // 1 = add to favorites
         };
         
-        console.log("🌟 API URL:", apiUrl);
         console.log("🌟 Request body:", requestBody);
         
-        const response = await fetch(apiUrl, {
+        const response = await fetch('/api/favorites', {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
