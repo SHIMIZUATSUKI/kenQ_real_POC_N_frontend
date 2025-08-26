@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_AZURE_API_URL;
+    const apiUrl = process.env.API_URL;
     
     if (!apiUrl) {
       console.error('API URL not configured');

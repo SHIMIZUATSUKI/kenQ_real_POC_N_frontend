@@ -26,16 +26,8 @@ export default function ProjectDetails({
           return;
         }
         
-        // フォールバック: APIから取得（404エラーが予想される）
-        const apiUrl = `${process.env.NEXT_PUBLIC_AZURE_API_URL}/matching-results?project_id=${projectId}`;
-        const response = await fetch(apiUrl);
-
-        if (!response.ok) {
-          throw new Error("プロジェクト情報の取得に失敗しました");
-        }
-
-        const data = await response.json();
-        setProject(data.project);  // ← プロジェクト部分だけ使う
+        // localStorageにデータがない場合はプロジェクト情報なし
+        console.log("ProjectDetails - localStorageにプロジェクトデータが見つかりません");
       } catch (error) {
         console.error("プロジェクト情報取得エラー:", error);
       } finally {

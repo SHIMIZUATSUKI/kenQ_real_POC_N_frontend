@@ -4,7 +4,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_AZURE_API_URL;
+    const apiUrl = process.env.API_URL;
     
     if (!apiUrl) {
       console.error('API URL not configured');
