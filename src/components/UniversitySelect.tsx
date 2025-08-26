@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import universitiesBySubregion from "@/data/universities_by_subregion.json";
 
 type UniversitySelectProps = {
@@ -15,99 +15,70 @@ const favoriteUniversities = [
 
 export default function UniversitySelect({ value, onChange }: UniversitySelectProps) {
     const allUniversities = Object.values(universitiesBySubregion).flat();
-    const isUpdatingRef = useRef(false);
     
-    // Initialize state based on the value prop
-    const getInitialState = () => {
-        if (value?.includes("全大学")) {
-            return {
-                selectedUniversities: allUniversities,
-                selectionMode: 'all' as const
-            };
-        }
-        return {
-            selectedUniversities: value || [],
-            selectionMode: 'none' as const
-        };
-    };
+    // 現在の選択状態を value prop から算出
+    const selectedUniversities = value?.includes("全大学") ? allUniversities : (value || []);
+    const isAllSelected = selectedUniversities.length === allUniversities.length;
+    const isFavoritesSelected = favoriteUniversities.every(u => selectedUniversities.includes(u)) && favoriteUniversities.some(u => selectedUniversities.includes(u));
     
-    const initialState = getInitialState();
-    const [selectedUniversities, setSelectedUniversities] = useState<string[]>(initialState.selectedUniversities);
-    const [selectionMode, setSelectionMode] = useState<'none' | 'all' | 'favorites' | 'regions'>(initialState.selectionMode);
-
-    // Call onChange when selectedUniversities changes (but not during initialization)
-    useEffect(() => {
-        if (isUpdatingRef.current) {
-            isUpdatingRef.current = false;
-            return;
-        }
-        
-        const allSelected = allUniversities.every((u) => selectedUniversities.includes(u));
-        const newValue = allSelected ? ["全大学"] : selectedUniversities;
-        onChange(newValue, allSelected);
-    }, [selectedUniversities, allUniversities, onChange]);
+    const [selectionMode, setSelectionMode] = useState<'none' | 'all' | 'favorites' | 'regions'>('none');
 
     const handleToggleUniversity = (univ: string) => {
-        setSelectedUniversities((prev) => {
-            if (prev.includes(univ)) {
-                // 選択を解除
-                return prev.filter((u) => u !== univ);
-            } else {
-                return [...prev, univ];
-            }
-        });
+        const newSelected = selectedUniversities.includes(univ)
+            ? selectedUniversities.filter((u) => u !== univ)
+            : [...selectedUniversities, univ];
+        
+        const allSelected = newSelected.length === allUniversities.length;
+        const finalValue = allSelected ? ["全大学"] : newSelected;
+        onChange(finalValue, allSelected);
     };
 
     const handleSelectAll = () => {
-        const isAllSelected = selectionMode === 'all';
-        isUpdatingRef.current = true;
         if (isAllSelected) {
-            setSelectedUniversities([]);
             setSelectionMode('none');
+            onChange([], false);
         } else {
-            setSelectedUniversities(allUniversities);
             setSelectionMode('all');
+            onChange(["全大学"], true);
         }
     };
 
     const handleSelectFavorites = () => {
-        const isFavoritesSelected = selectionMode === 'favorites';
-        isUpdatingRef.current = true;
-        if (isFavoritesSelected) {
+        if (selectionMode === 'favorites') {
             setSelectionMode('none');
-            setSelectedUniversities([]);
+            onChange([], false);
         } else {
             setSelectionMode('favorites');
-            // Clear previous selections and set only favorite universities
-            setSelectedUniversities(favoriteUniversities);
+            onChange(favoriteUniversities, false);
         }
     };
 
     const handleSelectRegions = () => {
-        const isRegionsSelected = selectionMode === 'regions';
-        isUpdatingRef.current = true;
-        if (isRegionsSelected) {
+        if (selectionMode === 'regions') {
             setSelectionMode('none');
-            setSelectedUniversities([]);
+            onChange([], false);
         } else {
             setSelectionMode('regions');
-            setSelectedUniversities([]);
+            // Keep current selection when switching to regions mode
         }
     };
 
-    const handleToggleRegion = (region: string, universities: string[]) => {
+    const handleToggleRegion = (_region: string, universities: string[]) => {
         const allRegionSelected = universities.every((u) => selectedUniversities.includes(u));
-        setSelectedUniversities((prev) => {
-            const newSelected = new Set(prev);
-            if (allRegionSelected) {
-                // 地域の選択を解除
-                universities.forEach((u) => newSelected.delete(u));
-            } else {
-                // 地域を選択
-                universities.forEach((u) => newSelected.add(u));
-            }
-            return Array.from(newSelected);
-        });
+        const newSelected = new Set(selectedUniversities);
+        
+        if (allRegionSelected) {
+            // 地域の選択を解除
+            universities.forEach((u) => newSelected.delete(u));
+        } else {
+            // 地域を選択
+            universities.forEach((u) => newSelected.add(u));
+        }
+        
+        const finalSelected = Array.from(newSelected);
+        const allSelected = finalSelected.length === allUniversities.length;
+        const finalValue = allSelected ? ["全大学"] : finalSelected;
+        onChange(finalValue, allSelected);
     };
 
     return (
@@ -119,7 +90,7 @@ export default function UniversitySelect({ value, onChange }: UniversitySelectPr
                     <label className="flex items-center space-x-2 text-sm">
                         <input
                             type="checkbox"
-                            checked={selectionMode === 'all'}
+                            checked={isAllSelected}
                             onChange={handleSelectAll}
                             className="w-4 h-4 accent-blue-500"
                         />
@@ -132,7 +103,7 @@ export default function UniversitySelect({ value, onChange }: UniversitySelectPr
                     <label className="flex items-center space-x-2 text-sm">
                         <input
                             type="checkbox"
-                            checked={selectionMode === 'favorites'}
+                            checked={isFavoritesSelected}
                             onChange={handleSelectFavorites}
                             className="w-4 h-4 accent-blue-500"
                         />

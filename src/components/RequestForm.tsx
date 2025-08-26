@@ -58,32 +58,27 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
   const [projectId, setProjectId] = useState<number | null>(null);
   const [researchResults, setResearchResults] = useState<any>(null);
 
-  // ✅ 選択した大学を formData に反映
-  useEffect(() => {
-    if (JSON.stringify(formData.university) !== JSON.stringify(selectedUniversities)) {
-      setFormData(prev => ({ ...prev, university: selectedUniversities }));
-    }
-  }, [selectedUniversities]);
+  // 削除: 無限ループの原因となるuseEffectを削除
 
   // ✅ formData をもとに localFormData や selectedUniversities を初期化
   useEffect(() => {
-  setLocalFormData(formData);
+    setLocalFormData(formData);
 
     let universityArray =
-    Array.isArray(formData.university)
-      ? formData.university
-      : formData.university
-      ? [formData.university]
-      : [];
+      Array.isArray(formData.university)
+        ? formData.university
+        : formData.university
+        ? [formData.university]
+        : [];
 
-  // ✅ "全大学" が含まれていたら、85校に展開
-  if (universityArray.includes("全大学")) {
-    const universityList85 = Object.values(universitiesBySubregion).flat();
-    setSelectedUniversities(universityList85);
-  } else {
-    setSelectedUniversities(universityArray);
-  }
-}, []);
+    // ✅ "全大学" が含まれていたら、85校に展開
+    if (universityArray.includes("全大学")) {
+      const universityList85 = Object.values(universitiesBySubregion).flat();
+      setSelectedUniversities(universityList85);
+    } else {
+      setSelectedUniversities(universityArray);
+    }
+  }, [formData.university]);
 
   // ✅ 処理状態を親コンポーネントに通知
   useEffect(() => {
@@ -691,7 +686,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
               const isAllSelected = value.length === allUniversityNames.length;
               const updated = isAllSelected ? ["全大学"] : value;
 
-              setFormData({ ...formData, university: updated });
+              setFormData(prev => ({ ...prev, university: updated }));
               setLocalFormData((prev) => ({ ...prev, university: updated }));
               setSelectedUniversities(value); // Use the actual selected universities, not the compressed format
             }}
