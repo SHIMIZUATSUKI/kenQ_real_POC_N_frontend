@@ -117,7 +117,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
     setLoading(true); // ← しばらくお待ちください。の表示のため
 
     try {
-      const apiBaseUrl = process.env.NEXT_PUBLIC_AZURE_API_URL;
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
       console.log("Environment check:", {
         NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
         NEXT_PUBLIC_AZURE_API_URL: process.env.NEXT_PUBLIC_AZURE_API_URL,
@@ -211,9 +211,9 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
     setIsResearching(true);
 
     try {
-      const apiBaseUrl = process.env.NEXT_PUBLIC_AZURE_API_URL;
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
       console.log("Project registration API call:", {
-        NEXT_PUBLIC_AZURE_API_URL: process.env.NEXT_PUBLIC_AZURE_API_URL,
+        NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
         apiBaseUrl: apiBaseUrl,
         endpoint: `${apiBaseUrl}/project-registration`
       });
