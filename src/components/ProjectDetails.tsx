@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import universitiesBySubregion from "@/data/universities_by_subregion.json";
 
 //export default function ProjectDetails({ projectId }: { projectId: string }) {
 export default function ProjectDetails({
@@ -90,27 +91,41 @@ export default function ProjectDetails({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* 左列 */}
           <div>
-            <div className="mb-3">
-              <h3 className="text-sm font-semibold text-gray-800 mb-1">業種</h3>
-              <p className="text-gray-700 text-sm">{project.industry || '食料品'}</p>
-            </div>
+            {project.industry && (
+              <div className="mb-3">
+                <h3 className="text-sm font-semibold text-gray-800 mb-1">業種</h3>
+                <p className="text-gray-700 text-sm">{project.industry}</p>
+              </div>
+            )}
             
             <div className="mb-3">
               <h3 className="text-sm font-semibold text-gray-800 mb-1">大学</h3>
-              <p className="text-gray-700 text-sm">全大学 (118校)</p>
+              <p className="text-gray-700 text-sm">{
+                Array.isArray(project.university) && project.university.includes("全大学")
+                  ? `全大学（${Object.values(universitiesBySubregion).flat().length}校）`
+                  : Array.isArray(project.university) && project.university.length > 0
+                  ? `${project.university.join("/")}（${project.university.length}校）`
+                  : "未指定"
+              }</p>
             </div>
           </div>
 
           {/* 右列 */}
           <div>
-            <div className="mb-3">
-              <h3 className="text-sm font-semibold text-gray-800 mb-1">事業内容</h3>
-              <p className="text-gray-700 text-sm">{project.businessDescription || '食子会社、アイスクリーム事業、ヨーグルト・乳酸菌事業、冷凍事業'}</p>
-            </div>
+            {project.businessDescription && (
+              <div className="mb-3">
+                <h3 className="text-sm font-semibold text-gray-800 mb-1">事業内容</h3>
+                <p className="text-gray-700 text-sm">{project.businessDescription}</p>
+              </div>
+            )}
             
             <div className="mb-3">
               <h3 className="text-sm font-semibold text-gray-800 mb-1">研究者階層</h3>
-              <p className="text-gray-700 text-sm">教授／准教授／助教／講師／助教授／助手／研究員／特任教授／特任助教／主任研究員</p>
+              <p className="text-gray-700 text-sm">{
+                Array.isArray(project.researcherLevel) && project.researcherLevel.length > 0
+                  ? project.researcherLevel.join("/")
+                  : "未指定"
+              }</p>
             </div>
           </div>
         </div>

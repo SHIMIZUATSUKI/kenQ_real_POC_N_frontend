@@ -229,7 +229,9 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
           title: localFormData.title,
           background: localFormData.background,
           industry: localFormData.industry,
-          businessDescription: localFormData.businessDescription
+          businessDescription: localFormData.businessDescription,
+          university: formData.university,
+          researcherLevel: localFormData.researcherLevel
         },
         matchingResults: result
       }));
