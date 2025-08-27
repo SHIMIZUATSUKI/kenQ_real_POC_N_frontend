@@ -337,7 +337,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
           </div>
           
           <p className="text-gray-600 mb-4">
-            研究者をAIが分析しています。処理完了まで画面を閉じずにお待ちください...
+            AIが研究者を分析しています。処理完了まで画面を閉じずにお待ちください...
           </p>
           
           
@@ -351,36 +351,6 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
                   : `${Array.isArray(formData.university) ? formData.university.length : 0}校`
               }</p>
               <p><span className="font-medium">研究者階層:</span> {Array.isArray(localFormData.researcherLevel) ? localFormData.researcherLevel.length : 0}項目</p>
-            </div>
-          </div>
-          
-          <div className="flex flex-col items-center">
-            <svg
-              className="animate-spin h-16 w-16 text-blue-500 mb-4"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-              ></path>
-            </svg>
-            <p className="text-lg font-medium text-gray-700 mb-2">リサーチ中...</p>
-            <p className="text-sm text-gray-500">AIが最適な研究者を分析しています</p>
-            
-            <div className="mt-6 flex items-center text-gray-400">
-              <div className="animate-pulse w-2 h-2 bg-gray-400 rounded-full mr-1"></div>
-              <span className="text-sm">実行中...</span>
             </div>
           </div>
         </div>
