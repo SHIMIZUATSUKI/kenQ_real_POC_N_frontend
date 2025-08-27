@@ -540,7 +540,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
             onClick={handleDiagnosis}
             className="bg-blue-400 hover:bg-blue-500 text-white text-sm font-semibold py-1 px-3 rounded"
           >
-            案件入力AIアシスト
+            案件入力_AIアシスト
           </button>
         </div>
 
@@ -550,13 +550,10 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
             <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full mx-4">
               <div className="flex items-center mb-4">
                 <span className="text-blue-600 text-xl mr-3">✨</span>
-                <h2 className="text-lg font-semibold">AIアシスト - 案件内容の最適化</h2>
+                <h2 className="text-lg font-semibold">AIアシスト - 案件内容の入力サポート</h2>
               </div>
               <p className="text-gray-700 mb-4">
-                AIが現在の案件内容を分析し、より効果的で魅力的な案件を案内内容を提案します。
-              </p>
-              <p className="text-gray-600 text-sm mb-6">
-                現在入力されている内容をAIが分析し、より魅力的で効果的な案件を案内内容を提案します。
+                AIが入力情報を深掘りし、充実した案件内容を提案します。
               </p>
               <div className="flex gap-3 justify-end">
                 <button
@@ -570,7 +567,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
                   onClick={executeDiagnosis}
                 >
                   <span>✨</span>
-                  AI診断を実行
+                  AIアシストを実行
                 </button>
               </div>
             </div>
@@ -582,22 +579,18 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
             <div className="bg-white p-6 rounded-lg shadow-lg max-w-2xl w-full mx-4">
               <div className="flex items-center mb-4">
                 <span className="text-blue-600 text-xl mr-3">✨</span>
-                <h2 className="text-lg font-semibold">AIアシスト - 案件内容の最適化</h2>
+                <h2 className="text-lg font-semibold">AIアシスト - 案件内容の入力サポート</h2>
               </div>
-              <p className="text-gray-700 mb-4">
-                AIが現在の案件内容を分析し、より効果的で魅力的な案件を案内内容を提案します。
-              </p>
-              
               <div className="mb-4">
                 <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">提案案件内容</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">AIによる提案</label>
                 </div>
                 <div className="border border-gray-300 rounded-lg p-3 bg-gray-50 max-h-60 overflow-y-auto">
                   <p className="whitespace-pre-wrap text-sm text-gray-800">{diagnosisResult}</p>
                 </div>
                 <div className="text-right mt-1">
                   <span className="text-xs text-gray-400">
-                    {diagnosisResult?.length || 0}/1000文字
+                    {diagnosisResult?.length || 0}/2000文字
                   </span>
                 </div>
               </div>
@@ -625,10 +618,10 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
             <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full mx-4">
               <div className="flex items-center mb-4">
                 <span className="text-blue-600 text-xl mr-3">✨</span>
-                <h2 className="text-lg font-semibold">AIアシスト - 案件内容の最適化</h2>
+                <h2 className="text-lg font-semibold">AIアシスト - 案件内容の入力サポート</h2>
               </div>
               <p className="text-gray-700 mb-6">
-                AIが現在の案件内容を分析し、より効果的で魅力的な案件を案内内容を提案します。
+                AIが入力情報を深掘りし、充実した案件内容を提案します。
               </p>
               <div className="flex flex-col items-center">
                 <svg
