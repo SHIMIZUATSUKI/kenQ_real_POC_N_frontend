@@ -291,9 +291,9 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
               <div>
                 <p><span className="font-medium">対象大学:</span> {
                   Array.isArray(formData.university) && formData.university.includes("全大学")
-                    ? `全大学（${Object.values(universitiesBySubregion).flat().length}校）`
+                    ? `${Object.values(universitiesBySubregion).flat().length}校`
                     : Array.isArray(formData.university) && formData.university.length > 0
-                    ? `${formData.university.join("/")}（${formData.university.length}校）`
+                    ? `${formData.university.length}校`
                     : "未指定"
                 }</p>
               </div>

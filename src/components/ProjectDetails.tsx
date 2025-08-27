@@ -91,12 +91,10 @@ export default function ProjectDetails({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* 左列 */}
           <div>
-            {project.industry && (
-              <div className="mb-3">
-                <h3 className="text-sm font-semibold text-gray-800 mb-1">業種</h3>
-                <p className="text-gray-700 text-sm">{project.industry}</p>
-              </div>
-            )}
+            <div className="mb-3">
+              <h3 className="text-sm font-semibold text-gray-800 mb-1">業種</h3>
+              <p className="text-gray-700 text-sm">{project.industry || ''}</p>
+            </div>
             
             <div className="mb-3">
               <h3 className="text-sm font-semibold text-gray-800 mb-1">大学</h3>
@@ -112,12 +110,10 @@ export default function ProjectDetails({
 
           {/* 右列 */}
           <div>
-            {project.businessDescription && (
-              <div className="mb-3">
-                <h3 className="text-sm font-semibold text-gray-800 mb-1">事業内容</h3>
-                <p className="text-gray-700 text-sm">{project.businessDescription}</p>
-              </div>
-            )}
+            <div className="mb-3">
+              <h3 className="text-sm font-semibold text-gray-800 mb-1">事業内容</h3>
+              <p className="text-gray-700 text-sm">{project.businessDescription || ''}</p>
+            </div>
             
             <div className="mb-3">
               <h3 className="text-sm font-semibold text-gray-800 mb-1">研究者階層</h3>
