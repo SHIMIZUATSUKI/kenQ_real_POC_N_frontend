@@ -276,15 +276,31 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
             <h4 className="text-blue-600 font-medium mb-3">{researchResults.project_title}</h4>
             
             <div className="space-y-2 text-sm text-gray-600">
+              {localFormData.industry && (
+                <div>
+                  <p><span className="font-medium">業種:</span> {localFormData.industry}</p>
+                </div>
+              )}
+              {localFormData.businessDescription && (
+                <div>
+                  <p><span className="font-medium">事業内容:</span> {localFormData.businessDescription}</p>
+                </div>
+              )}
               <div>
                 <p><span className="font-medium">対象大学:</span> {
-                  Array.isArray(localFormData.university) && localFormData.university.includes("全大学")
+                  Array.isArray(formData.university) && formData.university.includes("全大学")
                     ? `全大学（${Object.values(universitiesBySubregion).flat().length}校）`
-                    : `${Array.isArray(localFormData.university) ? localFormData.university.length : 0}校`
+                    : Array.isArray(formData.university) && formData.university.length > 0
+                    ? `${formData.university.join("/")}（${formData.university.length}校）`
+                    : "未指定"
                 }</p>
               </div>
               <div>
-                <p><span className="font-medium">研究者階層:</span> {Array.isArray(localFormData.researcherLevel) ? localFormData.researcherLevel.length : 0}項目</p>
+                <p><span className="font-medium">研究者階層:</span> {
+                  Array.isArray(localFormData.researcherLevel) && localFormData.researcherLevel.length > 0
+                    ? localFormData.researcherLevel.join("/")
+                    : "未指定"
+                }</p>
               </div>
             </div>
           </div>
