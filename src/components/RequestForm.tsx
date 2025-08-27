@@ -258,31 +258,13 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
             </div>
-            <h1 className="text-2xl font-bold text-gray-800">リサーチ完了！</h1>
+            <h1 className="text-2xl font-bold text-gray-800">リサーチが完了しました！</h1>
           </div>
           
           <p className="text-gray-600 mb-6">
-            AIリサーチが完了しました。結果をご確認ください。
+            マッチした研究者を確認できます
           </p>
-          
-          <div className="flex items-center justify-center mb-8">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-              <svg className="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-              </svg>
-            </div>
-          </div>
-          
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">リサーチが完了しました！</h2>
-          <p className="text-gray-600 mb-6">最適な研究者のマッチング結果を確認できます</p>
-          
-          <div className="text-sm text-gray-500 mb-8 flex items-center justify-center">
-            <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-            </svg>
-            処理時間: 15秒
-          </div>
-          
+
           <div className="bg-blue-50 p-6 rounded-lg mb-8 text-left">
             <div className="flex items-center mb-4">
               <svg className="w-5 h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -310,17 +292,6 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
           <div className="flex gap-4 justify-center">
             <button
               onClick={() => {
-                setResearchCompleted(false);
-                setIsResearching(false);
-                setProjectId(null);
-                setResearchResults(null);
-              }}
-              className="px-6 py-3 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50"
-            >
-              新しい案件を登録
-            </button>
-            <button
-              onClick={() => {
                 if (projectId) {
                   router.push(`/projects/${projectId}`);
                 }
@@ -331,11 +302,6 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
             </button>
           </div>
           
-          <div className="mt-8 text-center">
-            <p className="text-sm text-gray-500">
-              ※ 結果ページでは詳細な研究者情報、連絡先、推奨アプローチ方法をご確認いただけます
-            </p>
-          </div>
         </div>
       </div>
     );
@@ -371,7 +337,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
           </div>
           
           <p className="text-gray-600 mb-4">
-            最適な研究者をAIが分析しています。処理完了まで画面を閉じずにお待ちください...
+            研究者をAIが分析しています。処理完了まで画面を閉じずにお待ちください...
           </p>
           
           
