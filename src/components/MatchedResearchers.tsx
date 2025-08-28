@@ -364,7 +364,7 @@ export default function MatchedResearchers({
                   <span>マッチング理由</span>
                   <button 
                     onClick={toggleAllReasons}
-                    className="ml-1 text-blue-500 hover:text-blue-700 transition text-sm cursor-pointer"
+                    className="ml-1 text-blue-500 hover:text-blue-700 transition text-base cursor-pointer"
                     title={allReasonsExpanded ? "すべて折りたたむ" : "すべて展開"}
                   >
                     {allReasonsExpanded ? "−" : "＋"}
@@ -410,15 +410,15 @@ export default function MatchedResearchers({
                                      "―";
                     const isExpanded = expandedReasons.includes(researcherId);
                     
-                    // 2行表示用のテキストを作成（1行35文字×2行）
+                    // 2行表示用のテキストを作成（1行30文字×2行）
                     const getPreviewText = (text: string) => {
-                      if (text.length <= 70) return text;
+                      if (text.length <= 60) return text;
                       const lines = [];
                       let currentLine = "";
                       const words = text.split("");
                       
                       for (let i = 0; i < words.length && lines.length < 2; i++) {
-                        if (currentLine.length >= 35) {
+                        if (currentLine.length >= 30) {
                           lines.push(currentLine);
                           currentLine = words[i];
                         } else {
@@ -431,7 +431,7 @@ export default function MatchedResearchers({
                       }
                       
                       const result = lines.join("\n");
-                      return result + (text.length > 70 ? "..." : "");
+                      return result + (text.length > 60 ? "..." : "");
                     };
                     
                     const previewText = getPreviewText(fullReason);
@@ -440,10 +440,10 @@ export default function MatchedResearchers({
                       <div className="relative">
                         <div className="flex items-start">
                           <span className={isExpanded ? "whitespace-pre-wrap leading-tight" : "whitespace-pre-line leading-tight"}>{isExpanded ? fullReason : previewText}</span>
-                          {fullReason.length > 70 && (
+                          {fullReason.length > 60 && (
                             <button
                               onClick={() => toggleReasonExpansion(researcherId)}
-                              className="ml-1 text-blue-500 hover:text-blue-700 transition text-xs flex-shrink-0"
+                              className="ml-1 text-blue-500 hover:text-blue-700 transition text-sm flex-shrink-0"
                             >
                               {isExpanded ? "−" : "＋"}
                             </button>
