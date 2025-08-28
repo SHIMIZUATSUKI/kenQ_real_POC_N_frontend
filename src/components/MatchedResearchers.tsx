@@ -358,8 +358,8 @@ export default function MatchedResearchers({
               <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[14%]">所属</th>
               <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[12%]">部署</th>
               <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[6%]">職位</th>
-              <th className="px-2 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[6%]">研究者情報</th>
-              <th className="px-2 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[42%]">
+              <th className="pl-2 pr-4 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[6%]">研究者情報</th>
+              <th className="pl-4 pr-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[42%]">
                 <div className="flex items-center">
                   <span>マッチング理由</span>
                   <button 
@@ -371,7 +371,7 @@ export default function MatchedResearchers({
                   </button>
                 </div>
               </th>
-              <th className="px-2 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[8%]">お気に入り</th>
+              <th className="pl-4 pr-2 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[8%]">お気に入り</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -387,7 +387,7 @@ export default function MatchedResearchers({
                 <td className="px-4 py-4 text-gray-700">
                   {researcher.researcher_info?.position || "―"}
                 </td>
-                <td className="px-2 py-4 text-center">
+                <td className="pl-2 pr-4 py-4 text-center">
                   <a 
                     href={`https://nrid.nii.ac.jp/ja/nrid/1${(researcher.researcher_info?.researcher_id || researcher.matching_id).toString().padStart(12, '0')}`}
                     target="_blank"
@@ -401,7 +401,7 @@ export default function MatchedResearchers({
                     </svg>
                   </a>
                 </td>
-                <td className="px-2 py-4 text-gray-700 text-xs">
+                <td className="pl-4 pr-4 py-4 text-gray-700 text-xs">
                   {(() => {
                     const researcherId = (researcher.researcher_info?.researcher_id || researcher.matching_id).toString();
                     const fullReason = researcher.researcher_info?.explanation || 
@@ -453,7 +453,7 @@ export default function MatchedResearchers({
                     );
                   })()}
                 </td>
-                <td className="px-2 py-4 text-center">
+                <td className="pl-4 pr-2 py-4 text-center">
                   <button 
                     onClick={() => handleToggleFavoriteLocal((researcher.researcher_info?.researcher_id || researcher.matching_id).toString())}
                     className={`transition text-base ${
