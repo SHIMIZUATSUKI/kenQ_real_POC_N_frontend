@@ -275,17 +275,6 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
             <h4 className="text-blue-600 font-medium mb-3">{researchResults.project_title}</h4>
             
             <div className="space-y-2 text-sm text-gray-600">
-              
-              {localFormData.industry && (
-                <div>
-                  <p><span className="font-medium">業種:</span> {localFormData.industry}</p>
-                </div>
-              )}
-              {localFormData.businessDescription && (
-                <div>
-                  <p><span className="font-medium">事業内容:</span> {localFormData.businessDescription}</p>
-                </div>
-              )}
               <div>
                 <p><span className="font-medium">対象大学:</span> {
                   Array.isArray(formData.university) && formData.university.includes("全大学")
