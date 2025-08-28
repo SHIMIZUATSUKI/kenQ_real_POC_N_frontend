@@ -19,7 +19,7 @@ export default function UniversitySelect({ value, onChange }: UniversitySelectPr
     // 現在の選択状態を value prop から算出
     const selectedUniversities = value?.includes("全大学") ? allUniversities : (value || []);
     const isAllSelected = selectedUniversities.length === allUniversities.length;
-    const isFavoritesSelected = favoriteUniversities.every(u => selectedUniversities.includes(u)) && favoriteUniversities.some(u => selectedUniversities.includes(u));
+    const isFavoritesSelected = selectionMode === 'favorites' && favoriteUniversities.every(u => selectedUniversities.includes(u)) && favoriteUniversities.some(u => selectedUniversities.includes(u));
     
     const [selectionMode, setSelectionMode] = useState<'none' | 'all' | 'favorites' | 'regions'>('none');
 
