@@ -382,7 +382,9 @@ export default function MatchedResearchers({
                   {researcher.researcher_info?.university}
                 </td>
                 <td className="px-4 py-4 text-gray-700">
-                  {researcher.researcher_info?.affiliation || "―"}
+                  <div className="min-w-[8em] max-w-[8em] break-words whitespace-normal leading-tight">
+                    {researcher.researcher_info?.affiliation || "―"}
+                  </div>
                 </td>
                 <td className="px-4 py-4 text-gray-700">
                   {researcher.researcher_info?.position || "―"}
