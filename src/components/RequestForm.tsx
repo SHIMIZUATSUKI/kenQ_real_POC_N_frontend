@@ -275,6 +275,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
             <h4 className="text-blue-600 font-medium mb-3">{researchResults.project_title}</h4>
             
             <div className="space-y-2 text-sm text-gray-600">
+              
               {localFormData.industry && (
                 <div>
                   <p><span className="font-medium">業種:</span> {localFormData.industry}</p>

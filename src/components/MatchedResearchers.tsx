@@ -357,9 +357,9 @@ export default function MatchedResearchers({
               <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[12%]">氏名</th>
               <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[14%]">所属</th>
               <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[12%]">部署</th>
-              <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[6%]">職位</th>
-              <th className="pl-2 pr-4 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[6%]">研究者情報</th>
-              <th className="pl-4 pr-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[42%]">
+              <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[8%]">職位</th>
+              <th className="px-1 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[4%]">情報</th>
+              <th className="pl-3 pr-1 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[44%]">
                 <div className="flex items-center">
                   <span>マッチング理由</span>
                   <button 
@@ -371,7 +371,7 @@ export default function MatchedResearchers({
                   </button>
                 </div>
               </th>
-              <th className="pl-4 pr-2 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[8%]">お気に入り</th>
+              <th className="pl-1 pr-2 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[8%]">お気に入り</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -387,21 +387,21 @@ export default function MatchedResearchers({
                 <td className="px-4 py-4 text-gray-700">
                   {researcher.researcher_info?.position || "―"}
                 </td>
-                <td className="pl-2 pr-4 py-4 text-center">
+                <td className="px-1 py-4 text-center">
                   <a 
                     href={`https://nrid.nii.ac.jp/ja/nrid/1${(researcher.researcher_info?.researcher_id || researcher.matching_id).toString().padStart(12, '0')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-1.5 py-0.5 bg-blue-500 text-white rounded hover:bg-blue-600 transition whitespace-nowrap"
-                    style={{ fontSize: '10px' }}
+                    className="inline-flex items-center px-1 py-0.5 bg-blue-500 text-white rounded hover:bg-blue-600 transition whitespace-nowrap"
+                    style={{ fontSize: '8px' }}
                   >
-                    プロフィール
+                    詳細
                     <svg className="ml-1 w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                   </a>
                 </td>
-                <td className="pl-4 pr-4 py-4 text-gray-700 text-xs">
+                <td className="pl-3 pr-1 py-4 text-gray-700 text-xs">
                   {(() => {
                     const researcherId = (researcher.researcher_info?.researcher_id || researcher.matching_id).toString();
                     const fullReason = researcher.researcher_info?.explanation || 
@@ -453,7 +453,7 @@ export default function MatchedResearchers({
                     );
                   })()}
                 </td>
-                <td className="pl-4 pr-2 py-4 text-center">
+                <td className="pl-1 pr-2 py-4 text-center">
                   <button 
                     onClick={() => handleToggleFavoriteLocal((researcher.researcher_info?.researcher_id || researcher.matching_id).toString())}
                     className={`transition text-base ${
