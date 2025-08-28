@@ -16,12 +16,12 @@ const favoriteUniversities = [
 export default function UniversitySelect({ value, onChange }: UniversitySelectProps) {
     const allUniversities = Object.values(universitiesBySubregion).flat();
     
+    const [selectionMode, setSelectionMode] = useState<'none' | 'all' | 'favorites' | 'regions'>('none');
+    
     // 現在の選択状態を value prop から算出
     const selectedUniversities = value?.includes("全大学") ? allUniversities : (value || []);
     const isAllSelected = selectedUniversities.length === allUniversities.length;
     const isFavoritesSelected = selectionMode === 'favorites' && favoriteUniversities.every(u => selectedUniversities.includes(u)) && favoriteUniversities.some(u => selectedUniversities.includes(u));
-    
-    const [selectionMode, setSelectionMode] = useState<'none' | 'all' | 'favorites' | 'regions'>('none');
 
     const handleToggleUniversity = (univ: string) => {
         const newSelected = selectedUniversities.includes(univ)
