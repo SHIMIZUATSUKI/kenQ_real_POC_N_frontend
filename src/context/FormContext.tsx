@@ -2,6 +2,12 @@
 
 import { createContext, useContext, useState, ReactNode } from "react";
 
+// 研究者階層の定義
+const allResearcherLevels = [
+  "教授", "准教授", "助教", "講師", "助教授", "助手",
+  "研究員", "特任助教", "主任研究員", "特任教授",
+];
+
 // フォームの型定義
 type FormDataType = {
   category: string;
