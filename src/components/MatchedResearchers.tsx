@@ -358,8 +358,8 @@ export default function MatchedResearchers({
               <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[14%]">所属</th>
               <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[12%]">部署</th>
               <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[8%]">職位</th>
-              <th className="px-1 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[4%]">情報</th>
-              <th className="pl-3 pr-1 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[44%]">
+              <th className="px-1 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[4%]">研究者情報</th>
+              <th className="pl-3 pr-1 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[42%]">
                 <div className="flex items-center">
                   <span>マッチング理由</span>
                   <button 
@@ -395,7 +395,7 @@ export default function MatchedResearchers({
                     className="inline-flex items-center px-1 py-0.5 bg-blue-500 text-white rounded hover:bg-blue-600 transition whitespace-nowrap"
                     style={{ fontSize: '8px' }}
                   >
-                    詳細
+                    プロフィール
                     <svg className="ml-1 w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
