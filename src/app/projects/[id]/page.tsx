@@ -82,7 +82,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             {/* 情報源の表示 */}
             <div className="mt-4 text-center">
                 <p className="text-sm text-gray-500">
-                    *情報源は<a href="https://kaken.nii.ac.jp/ja/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 underline">https://kaken.nii.ac.jp/ja/</a>より
+                    *研究者情報はKAKEN：科学研究費助成事業データベース（国立情報学研究所）（<a href="https://kaken.nii.ac.jp/ja/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 underline">https://kaken.nii.ac.jp/ja/</a>）をもとに作成しています。
                 </p>
             </div>
 
