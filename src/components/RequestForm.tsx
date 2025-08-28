@@ -264,7 +264,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
           </div>
           
           <p className="text-gray-600 mb-6">
-            マッチした研究者を確認できます
+            マッチングした研究者を確認できます
           </p>
 
           <div className="bg-blue-50 p-6 rounded-lg mb-8 text-left">
@@ -355,7 +355,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
           </div>
           
           <p className="text-gray-600 mb-4">
-            AIが研究者を分析しています。処理完了まで画面を閉じずにお待ちください...
+            マッチングする研究者をAIが分析しています。処理完了まで画面を閉じずにお待ちください...
           </p>
           
           

@@ -26,6 +26,7 @@ export default function MatchedResearchers({
   const [showFavoriteConfirm, setShowFavoriteConfirm] = useState(false);
   const [showFavoriteSuccess, setShowFavoriteSuccess] = useState(false);
   const [expandedReasons, setExpandedReasons] = useState<string[]>([]);
+  const [allReasonsExpanded, setAllReasonsExpanded] = useState(false);
 
   const router = useRouter();
 
@@ -145,6 +146,20 @@ export default function MatchedResearchers({
         ? prev.filter(id => id !== researcherId)
         : [...prev, researcherId]
     );
+  };
+
+  // 全マッチング理由の一括展開/折りたたみ
+  const toggleAllReasons = () => {
+    if (allReasonsExpanded) {
+      setExpandedReasons([]);
+      setAllReasonsExpanded(false);
+    } else {
+      const allResearcherIds = researchers.map(r => 
+        (r.researcher_info?.researcher_id || r.matching_id).toString()
+      );
+      setExpandedReasons(allResearcherIds);
+      setAllReasonsExpanded(true);
+    }
   };
 
   // ローカルお気に入り選択切り替え（☆ボタン用）
@@ -339,18 +354,24 @@ export default function MatchedResearchers({
         <table className="w-full text-sm border-collapse table-fixed">
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
-              <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[10%]">氏名</th>
+              <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[14%]">氏名</th>
               <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[16%]">所属</th>
               <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[12%]">部署</th>
-              <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[8%]">職位</th>
-              <th className="px-4 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[10%]">研究者情報</th>
-              <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[36%]">
+              <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[6%]">職位</th>
+              <th className="px-4 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[6%]">研究者情報</th>
+              <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[40%]">
                 <div className="flex items-center">
                   <span>マッチング理由</span>
-                  <span className="ml-1 text-gray-500 text-sm">＋</span>
+                  <button 
+                    onClick={toggleAllReasons}
+                    className="ml-1 text-blue-500 hover:text-blue-700 transition text-sm cursor-pointer"
+                    title={allReasonsExpanded ? "すべて折りたたむ" : "すべて展開"}
+                  >
+                    {allReasonsExpanded ? "−" : "＋"}
+                  </button>
                 </div>
               </th>
-              <th className="px-4 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[8%]">お気に入り</th>
+              <th className="px-4 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[6%]">お気に入り</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -389,12 +410,28 @@ export default function MatchedResearchers({
                                      "―";
                     const isExpanded = expandedReasons.includes(researcherId);
                     
-                    // 30文字で切って2行表示用のテキストを作成（1行20文字×2行に調整）
+                    // 2行表示用のテキストを作成（1行35文字×2行）
                     const getPreviewText = (text: string) => {
-                      if (text.length <= 30) return text;
-                      const firstLine = text.substring(0, 20);
-                      const secondLine = text.substring(20, 30) + "...";
-                      return `${firstLine}\n${secondLine}`;
+                      if (text.length <= 70) return text;
+                      const lines = [];
+                      let currentLine = "";
+                      const words = text.split("");
+                      
+                      for (let i = 0; i < words.length && lines.length < 2; i++) {
+                        if (currentLine.length >= 35) {
+                          lines.push(currentLine);
+                          currentLine = words[i];
+                        } else {
+                          currentLine += words[i];
+                        }
+                      }
+                      
+                      if (currentLine && lines.length < 2) {
+                        lines.push(currentLine);
+                      }
+                      
+                      const result = lines.join("\n");
+                      return result + (text.length > 70 ? "..." : "");
                     };
                     
                     const previewText = getPreviewText(fullReason);
@@ -403,7 +440,7 @@ export default function MatchedResearchers({
                       <div className="relative">
                         <div className="flex items-start">
                           <span className={isExpanded ? "whitespace-pre-wrap leading-tight" : "whitespace-pre-line leading-tight"}>{isExpanded ? fullReason : previewText}</span>
-                          {fullReason.length > 30 && (
+                          {fullReason.length > 70 && (
                             <button
                               onClick={() => toggleReasonExpansion(researcherId)}
                               className="ml-1 text-blue-500 hover:text-blue-700 transition text-xs flex-shrink-0"
