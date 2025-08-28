@@ -269,9 +269,6 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
 
           <div className="bg-blue-50 p-6 rounded-lg mb-8 text-left">
             <div className="flex items-center mb-4">
-              <svg className="w-5 h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
               <h3 className="text-lg font-semibold text-blue-800">リサーチした案件</h3>
             </div>
             
