@@ -439,7 +439,15 @@ export default function MatchedResearchers({
                     return (
                       <div className="relative">
                         <div className="flex items-start">
-                          <span className={isExpanded ? "whitespace-pre-wrap leading-tight break-words" : "whitespace-pre-line leading-tight break-words"}>{isExpanded ? fullReason : previewText}</span>
+                          <span
+                            className={
+                              isExpanded
+                                ? "whitespace-pre-wrap leading-tight break-words"
+                                : "leading-tight break-words line-clamp-2"
+                            }
+                          >
+                            {fullReason}
+                          </span>
                           {fullReason.length > 60 && (
                             <button
                               onClick={() => toggleReasonExpansion(researcherId)}
