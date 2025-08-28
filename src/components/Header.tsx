@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useSession, signOut } from "next-auth/react";
+import { useFormContext } from "@/context/FormContext";
 
 const Header = () => {
   const pathname = usePathname();
@@ -11,6 +12,7 @@ const Header = () => {
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [showRegisterConfirm, setShowRegisterConfirm] = useState(false);
   const { data: session } = useSession();
+  const { resetForm } = useFormContext();
   
   const username = session?.user?.company_user_name || "ユーザー";
 
@@ -25,6 +27,7 @@ const Header = () => {
 
   const handleRegisterConfirm = () => {
     setShowRegisterConfirm(false);
+    resetForm(); // フォームをリセット
     router.push("/register");
   };
 
