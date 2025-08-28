@@ -44,7 +44,7 @@ const Header = () => {
       {/* 右側のユーザーエリア */}
       <div className="flex items-center gap-6">
         {/* 新規登録リンク - 結果表示画面でのみ表示 */}
-        {pathname.includes('/results/') && (
+        {pathname.includes('/projects/') && (
           <button
             onClick={handleRegisterClick}
             className="text-gray-700 hover:text-gray-900 transition"
