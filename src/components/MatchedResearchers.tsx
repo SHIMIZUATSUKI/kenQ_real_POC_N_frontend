@@ -358,8 +358,8 @@ export default function MatchedResearchers({
               <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[14%]">所属</th>
               <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[12%]">部署</th>
               <th className="px-4 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[8%]">職位</th>
-              <th className="px-1 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[4%]">研究者情報</th>
-              <th className="pl-3 pr-1 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[42%]">
+              <th className="px-1 py-4 text-center font-semibold text-gray-700 whitespace-nowrap w-[8%] min-w-[120px]">研究者情報</th>
+              <th className="pl-3 pr-1 py-4 text-left font-semibold text-gray-700 whitespace-nowrap w-[38%]">
                 <div className="flex items-center">
                   <span>マッチング理由</span>
                   <button 
@@ -387,7 +387,7 @@ export default function MatchedResearchers({
                 <td className="px-4 py-4 text-gray-700">
                   {researcher.researcher_info?.position || "―"}
                 </td>
-                <td className="px-1 py-4 text-center">
+                <td className="px-1 py-4 text-center align-top pr-2">
                   <a 
                     href={`https://nrid.nii.ac.jp/ja/nrid/1${(researcher.researcher_info?.researcher_id || researcher.matching_id).toString().padStart(12, '0')}`}
                     target="_blank"
@@ -401,7 +401,7 @@ export default function MatchedResearchers({
                     </svg>
                   </a>
                 </td>
-                <td className="pl-3 pr-1 py-4 text-gray-700 text-xs">
+                <td className="pl-3 pr-1 py-4 text-gray-700 text-xs align-top break-words">
                   {(() => {
                     const researcherId = (researcher.researcher_info?.researcher_id || researcher.matching_id).toString();
                     const fullReason = researcher.researcher_info?.explanation || 
@@ -439,7 +439,7 @@ export default function MatchedResearchers({
                     return (
                       <div className="relative">
                         <div className="flex items-start">
-                          <span className={isExpanded ? "whitespace-pre-wrap leading-tight" : "whitespace-pre-line leading-tight"}>{isExpanded ? fullReason : previewText}</span>
+                          <span className={isExpanded ? "whitespace-pre-wrap leading-tight break-words" : "whitespace-pre-line leading-tight break-words"}>{isExpanded ? fullReason : previewText}</span>
                           {fullReason.length > 60 && (
                             <button
                               onClick={() => toggleReasonExpansion(researcherId)}
