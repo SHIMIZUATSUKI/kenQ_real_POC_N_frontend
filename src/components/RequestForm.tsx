@@ -418,7 +418,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
           name="industry"
           value={localFormData.industry}
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded-lg"
+          className="w-full p-2 pr-8 border border-gray-300 rounded-lg"
         >
           <option value="">選択してください</option>
           <option value="水産・農林業">水産・農林業</option>
@@ -497,7 +497,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
                 <span className="text-blue-600 text-xl mr-3">✨</span>
                 <h2 className="text-lg font-semibold">AIアシスト - 案件内容の入力サポート</h2>
               </div>
-              <p className="text-gray-700 text-sm mb-4">
+              <p className="text-gray-700 text-sm mb-6">
                 AIが入力情報を深掘りし、充実した案件内容を提案します。
               </p>
               <div className="flex gap-3 justify-end">
