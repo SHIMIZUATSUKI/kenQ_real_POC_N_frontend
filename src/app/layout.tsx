@@ -19,8 +19,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const showHeader = !pathname.startsWith("/login");
 
   return (
-    <html lang="ja">
-      <body className={`${notoSansJP.className} antialiased`}>
+    <html lang="ja" className="light">
+      <body className={`${notoSansJP.className} antialiased bg-white text-black`}>
         <SessionProvider>
           <FormProvider>
             {showHeader && <Header />}
