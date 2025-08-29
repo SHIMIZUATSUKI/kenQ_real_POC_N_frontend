@@ -244,10 +244,14 @@ export default function MatchedResearchers({
       ["案件情報"],
       ["案件タイトル", projectData?.title || ""],
       ["案件内容", projectData?.background || ""],
-      ["業種", projectData?.industry || "食料品"],
-      ["事業内容", projectData?.businessDescription || "食子会社、アイスクリーム事業、ヨーグルト・乳酸菌事業、冷凍事業"],
-      ["大学", "全大学 (118校)"],
-      ["研究者階層", "教授／准教授／助教／講師／助教授／助手／研究員／特任教授／特任助教／主任研究員"]
+      ["業種", projectData?.industry || "入力なし"],
+      ["事業内容", projectData?.businessDescription || "入力なし"],
+      ["大学", Array.isArray(projectData?.universities) && projectData.universities.length > 0 ? 
+        (projectData.universities.length === 118 || projectData.universities.includes("全大学") ? "全大学（118校）" : projectData.universities.join("／")) : 
+        "全大学（118校）"],
+      ["研究者階層", Array.isArray(projectData?.positions) && projectData.positions.length > 0 ? 
+        projectData.positions.join("／") : 
+        "教授／准教授／助教／講師／助教授／助手／研究員／特任教授／特任助教／主任研究員"]
     ];
     
     const projectWS = XLSX.utils.aoa_to_sheet(projectInfo);
