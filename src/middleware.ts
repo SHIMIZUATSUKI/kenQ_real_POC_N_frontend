@@ -21,5 +21,5 @@ export default withAuth(
 
 // このミドルウェアを適用するルートパターン
 export const config = {
-  matcher: ["/mypage", "/projects/:path*", "/researcher/:path*", "/register/:path*"],
+  matcher: ["/projects/:path*", "/researcher/:path*", "/register/:path*"],
 };

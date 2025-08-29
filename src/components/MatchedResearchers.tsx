@@ -512,10 +512,10 @@ export default function MatchedResearchers({
           <div className="bg-white p-6 rounded-lg shadow-lg text-center max-w-xs">
             <h2 className="text-xl font-bold mb-4">オファーしました！</h2>
             <button
-              onClick={() => router.push("/mypage")}
+              onClick={() => router.push("/register")}
               className="w-full py-3 bg-gray-700 text-white rounded-lg shadow-md hover:bg-gray-600 transition duration-200"
             >
-              マイページを見る
+              案件登録に戻る
             </button>
           </div>
         </div>
