@@ -287,7 +287,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
               <div>
                 <p><span className="font-medium">研究者階層:</span> {
                   Array.isArray(localFormData.researcherLevel) && localFormData.researcherLevel.length > 0
-                    ? localFormData.researcherLevel.join("/")
+                    ? `${localFormData.researcherLevel.length}項目`
                     : "未指定"
                 }</p>
               </div>
@@ -357,7 +357,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
               }</p>
               <p><span className="font-medium">研究者階層:</span> {
                 Array.isArray(localFormData.researcherLevel) && localFormData.researcherLevel.length > 0
-                  ? localFormData.researcherLevel.join("/")
+                  ? `${localFormData.researcherLevel.length}項目`
                   : "未指定"
               }</p>
             </div>
