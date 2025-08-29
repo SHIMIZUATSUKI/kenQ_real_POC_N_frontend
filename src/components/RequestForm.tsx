@@ -144,7 +144,15 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
 
       const result = await response.json();
       console.log("診断結果", result.message); // ★ここ
-      setDiagnosisResult(result || "診断結果が取得できませんでした");
+      
+      // カギ括弧を除去する処理
+      let cleanedResult = result.message || result || "診断結果が取得できませんでした";
+      if (typeof cleanedResult === 'string') {
+        // 先頭と末尾のカギ括弧を除去
+        cleanedResult = cleanedResult.replace(/^「|」$/g, '').trim();
+      }
+      
+      setDiagnosisResult(cleanedResult);
       setShowModal(true);
     } catch (error) {
       console.error("診断エラー:", error);
