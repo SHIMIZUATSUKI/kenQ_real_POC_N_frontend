@@ -12,7 +12,7 @@ export default function MatchedResearchers({
   projectId: string;
   setLoading: (value: boolean) => void;
 }) {
-  console.log("📌 現在の project_id:", projectId); 
+  // console.log("📌 現在の project_id:", projectId); 
   const [researchers, setResearchers] = useState<any[]>([]);
   const [selectedResearchers, setSelectedResearchers] = useState<string[]>([]);
   const [showPopup, setShowPopup] = useState(false);
@@ -37,8 +37,8 @@ export default function MatchedResearchers({
         const storedData = localStorage.getItem(`project_${projectId}`);
         if (storedData) {
           const data = JSON.parse(storedData);
-          console.log("MatchedResearchers - 研究者データ:", data.matchingResults.matched_researchers);
-          console.log("MatchedResearchers - 研究者数:", data.matchingResults.matched_researchers?.length);
+          // console.log("MatchedResearchers - 研究者データ:", data.matchingResults.matched_researchers);
+          // console.log("MatchedResearchers - 研究者数:", data.matchingResults.matched_researchers?.length);
           setResearchers(data.matchingResults.matched_researchers || []);
           setProjectTitle(data.projectData.title || "");
           setProjectData(data.projectData || null);
@@ -62,10 +62,10 @@ export default function MatchedResearchers({
 
         const data = await response.json();
 
-        console.log("🔍 APIレスポンス", data);
-        console.log("🔍 プロジェクトタイトル:", data.matchings?.[0]?.project?.project_title);
+        // console.log("🔍 APIレスポンス", data);
+        // console.log("🔍 プロジェクトタイトル:", data.matchings?.[0]?.project?.project_title);
         //console.log("🔍 サンプル研究者データ:", data.matchings?.[0]?.researcher);
-        console.log("🔍 サンプル研究者データ:", JSON.stringify(data.matchings?.[0]?.researcher, null, 2));
+        // console.log("🔍 サンプル研究者データ:", JSON.stringify(data.matchings?.[0]?.researcher, null, 2));
 
         setProjectTitle(data.project?.project_title || "");
 
@@ -164,12 +164,12 @@ export default function MatchedResearchers({
 
   // ローカルお気に入り選択切り替え（☆ボタン用）
   const handleToggleFavoriteLocal = (researcherId: string) => {
-    console.log("🌟 ローカルお気に入り切り替え - researcher_id:", researcherId);
+    // console.log("🌟 ローカルお気に入り切り替え - researcher_id:", researcherId);
     setFavorites((prev) => {
       const newFavorites = prev.includes(researcherId)
         ? prev.filter((id) => id !== researcherId)
         : [...prev, researcherId];
-      console.log("🌟 Updated local favorites:", newFavorites);
+      // console.log("🌟 Updated local favorites:", newFavorites);
       return newFavorites;
     });
   };
@@ -181,7 +181,7 @@ export default function MatchedResearchers({
       return;
     }
 
-    console.log("🌟 お気に入り一括登録開始 - favorites:", favorites, "project_id:", projectId);
+    // console.log("🌟 お気に入り一括登録開始 - favorites:", favorites, "project_id:", projectId);
     
     try {
       for (const researcherId of favorites) {
@@ -196,7 +196,7 @@ export default function MatchedResearchers({
           favorite_status: 1, // 1 = add to favorites
         };
         
-        console.log("🌟 Request body:", requestBody);
+        // console.log("🌟 Request body:", requestBody);
         
         const response = await fetch('/api/favorites', {
           method: "POST",
@@ -206,7 +206,7 @@ export default function MatchedResearchers({
           body: JSON.stringify(requestBody),
         });
 
-        console.log("🌟 Response status:", response.status);
+        // console.log("🌟 Response status:", response.status);
         
         if (!response.ok) {
           const errorText = await response.text();
@@ -217,7 +217,7 @@ export default function MatchedResearchers({
       
       setShowFavoriteConfirm(false);
       setShowFavoriteSuccess(true);
-      console.log("🌟 お気に入り一括登録成功");
+      // console.log("🌟 お気に入り一括登録成功");
       
     } catch (error) {
       console.error("❌ お気に入り登録エラー:", error);
@@ -227,11 +227,11 @@ export default function MatchedResearchers({
   };
 
   const handleExportExcel = () => {
-    console.log("📊 Excel出力開始 - researchers.length:", researchers.length);
-    console.log("📊 Researchers data:", researchers);
+    // console.log("📊 Excel出力開始 - researchers.length:", researchers.length);
+    // console.log("📊 Researchers data:", researchers);
     
     if (researchers.length === 0) {
-      console.log("📊 研究者データが空のため、Excel出力をスキップ");
+      // console.log("📊 研究者データが空のため、Excel出力をスキップ");
       alert("エクスポートする研究者データがありません。");
       return;
     }
@@ -343,15 +343,15 @@ export default function MatchedResearchers({
     XLSX.writeFile(wb, filename);
   };
 
-  console.log("MatchedResearchers - render時のresearchers:", researchers);
-  console.log("MatchedResearchers - render時の研究者数:", researchers.length);
+  // console.log("MatchedResearchers - render時のresearchers:", researchers);
+  // console.log("MatchedResearchers - render時の研究者数:", researchers.length);
   
   // 最初の研究者のデータ構造を詳しく確認
   if (researchers.length > 0) {
-    console.log("📋 サンプル研究者の詳細データ構造:", JSON.stringify(researchers[0], null, 2));
-    console.log("📋 サンプル研究者のresearcher_info.explanation:", researchers[0].researcher_info?.explanation);
-    console.log("📋 サンプル研究者のexplanation:", researchers[0].explanation);
-    console.log("📋 サンプル研究者のmatching_reason:", researchers[0].matching_reason);
+    // console.log("📋 サンプル研究者の詳細データ構造:", JSON.stringify(researchers[0], null, 2));
+    // console.log("📋 サンプル研究者のresearcher_info.explanation:", researchers[0].researcher_info?.explanation);
+    // console.log("📋 サンプル研究者のexplanation:", researchers[0].explanation);
+    // console.log("📋 サンプル研究者のmatching_reason:", researchers[0].matching_reason);
   }
 
   return (

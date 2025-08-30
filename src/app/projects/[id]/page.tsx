@@ -16,7 +16,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         if (storedData) {
             const data = JSON.parse(storedData);
             setProjectData(data);
-            console.log("Loaded project data:", data);
+            // console.log("Loaded project data:", data);
         } else {
             console.error("Project data not found for ID:", projectId);
         }

@@ -24,7 +24,7 @@ export default function ResearcherPage({ params }: { params: { id: string } }) {
     useEffect(() => {
         if (researcherId) {
             const apiUrl = `${process.env.NEXT_PUBLIC_AZURE_API_URL}/researcher-information?researcher_id=${researcherId}`;
-            console.log("Fetching researcher from:", apiUrl);
+            // console.log("Fetching researcher from:", apiUrl);
 
             fetch(apiUrl)
             .then((res) => {
@@ -32,7 +32,7 @@ export default function ResearcherPage({ params }: { params: { id: string } }) {
                 return res.json();
             })
             .then(data => {
-                console.log("✅ researcher data:", data.researcher);
+                // console.log("✅ researcher data:", data.researcher);
                 setResearcher(data.researcher); // 🔧 ← ここが大事！
             })
             .catch((err) => console.error("Error fetching researcher:", err));
@@ -42,7 +42,7 @@ export default function ResearcherPage({ params }: { params: { id: string } }) {
     if (!researcher) return <p>Loading...</p>;
 
     const handleShowMatchingReason = (researcherId: string) => {
-        console.log(`Matching reason requested for researcher ID: ${researcherId}`);
+        // console.log(`Matching reason requested for researcher ID: ${researcherId}`);
         // ここにモーダルを開く処理を追加予定
     };
 

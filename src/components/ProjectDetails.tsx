@@ -21,14 +21,14 @@ export default function ProjectDetails({
         const storedData = localStorage.getItem(`project_${projectId}`);
         if (storedData) {
           const data = JSON.parse(storedData);
-          console.log("ProjectDetails - 取得したデータ:", data.projectData);
+          // console.log("ProjectDetails - 取得したデータ:", data.projectData);
           setProject(data.projectData);
           setLoading(false);
           return;
         }
         
         // localStorageにデータがない場合はプロジェクト情報なし
-        console.log("ProjectDetails - localStorageにプロジェクトデータが見つかりません");
+        // console.log("ProjectDetails - localStorageにプロジェクトデータが見つかりません");
       } catch (error) {
         console.error("プロジェクト情報取得エラー:", error);
       } finally {
@@ -69,7 +69,7 @@ export default function ProjectDetails({
     );
   }
 
-  console.log("ProjectDetails - render時のproject:", project);
+  // console.log("ProjectDetails - render時のproject:", project);
 
   return (
     <div className="mb-8">

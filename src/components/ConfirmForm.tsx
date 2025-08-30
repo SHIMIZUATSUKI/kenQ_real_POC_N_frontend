@@ -15,9 +15,9 @@ export default function ConfirmForm() {
     const handleConfirm = async () => {
         setIsLoading(true);
         setError(null);
-        console.log("✅ 大学名:", formData.university);
-        console.log("📦 university:", formData.university);
-        console.log("📦 typeof:", typeof formData.university);
+        // console.log("✅ 大学名:", formData.university);
+        // console.log("📦 university:", formData.university);
+        // console.log("📦 typeof:", typeof formData.university);
 
         const apiBaseUrl = process.env.NEXT_PUBLIC_AZURE_API_URL;
 
@@ -58,7 +58,7 @@ export default function ConfirmForm() {
             }
 
             const data = await response.json();
-            console.log("Project registered:", data);
+            // console.log("Project registered:", data);
 
             if (data.project_id) {
             // ✅ `projectData` に `formData` も保存

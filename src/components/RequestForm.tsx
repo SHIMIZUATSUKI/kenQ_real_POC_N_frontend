@@ -107,7 +107,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
   };
 
   const executeDiagnosis = async () => {
-    console.log("送信内容", localFormData);
+    // console.log("送信内容", localFormData);
     setShowConfirmModal(false);
     setLoading(true); // ← しばらくお待ちください。の表示のため
 
@@ -143,7 +143,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
       }
 
       const result = await response.json();
-      console.log("診断結果", result.message); // ★ここ
+      // console.log("診断結果", result.message); // ★ここ
       
       // カギ括弧を除去する処理
       let cleanedResult = result.message || result || "診断結果が取得できませんでした";
@@ -224,7 +224,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
       }
 
       const result = await response.json();
-      console.log("Project registration result:", result);
+      // console.log("Project registration result:", result);
       
       const projectId = result.project_id || result.id;
       setProjectId(projectId);
@@ -272,7 +272,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
           </div>
           
           <p className="text-gray-600 mb-6">
-            マッチングした研究者を確認できます
+            マッチングした研究者を確認できます。
           </p>
 
           <div className="bg-blue-50 p-6 rounded-lg mb-8 text-left">
@@ -493,7 +493,7 @@ export default function RequestForm({ onSubmit, onStatusChange }: RequestFormPro
             onClick={handleDiagnosis}
             className="bg-blue-400 hover:bg-blue-500 text-white text-sm font-semibold py-1 px-3 rounded"
           >
-            案件入力_AIアシスト
+            案件入力 AIアシスト
           </button>
         </div>
 
