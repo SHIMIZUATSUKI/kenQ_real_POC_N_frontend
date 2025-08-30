@@ -46,8 +46,8 @@ export async function GET(req: NextRequest) {
       const errorText = await response.text();
       console.error('Backend API error:', errorText);
       return NextResponse.json(
-        { error: 'マッチング結果取得エラー', details: errorText },
-        { status: response.status }
+        { error: 'マッチング結果取得中にエラーが発生しました' },
+        { status: 500 }
       );
     }
 

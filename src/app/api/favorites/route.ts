@@ -37,8 +37,8 @@ export async function POST(req: NextRequest) {
       const errorText = await response.text();
       console.error('Backend API error:', errorText);
       return NextResponse.json(
-        { error: 'お気に入り登録エラー', details: errorText },
-        { status: response.status }
+        { error: 'お気に入り登録中にエラーが発生しました' },
+        { status: 500 }
       );
     }
 
