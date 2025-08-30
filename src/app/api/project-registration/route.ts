@@ -43,8 +43,8 @@ export async function POST(req: NextRequest) {
       const errorText = await response.text();
       console.error('Backend API error:', errorText);
       return NextResponse.json(
-        { error: 'プロジェクト登録APIエラー', details: errorText },
-        { status: response.status }
+        { error: 'プロジェクト登録中にエラーが発生しました' },
+        { status: 500 }
       );
     }
 

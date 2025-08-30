@@ -1,7 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/auth';
 
 export async function GET(req: NextRequest) {
   try {
+    const session = await getServerSession(authOptions);
+    
+    if (!session?.user?.id) {
+      return NextResponse.json(
+        { error: 'ログインが必要です' },
+        { status: 401 }
+      );
+    }
+
     const { searchParams } = new URL(req.url);
     const projectId = searchParams.get('project_id');
     
@@ -35,8 +46,8 @@ export async function GET(req: NextRequest) {
       const errorText = await response.text();
       console.error('Backend API error:', errorText);
       return NextResponse.json(
-        { error: 'マッチング結果取得エラー', details: errorText },
-        { status: response.status }
+        { error: 'マッチング結果取得中にエラーが発生しました' },
+        { status: 500 }
       );
     }
 

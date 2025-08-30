@@ -2,7 +2,6 @@
 const nextConfig = {
   output: 'standalone',
   experimental: {
-    middlewareSourceMaps: true,
   },
   async headers() {
     return [

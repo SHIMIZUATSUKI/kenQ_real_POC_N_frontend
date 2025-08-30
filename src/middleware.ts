@@ -1,4 +1,3 @@
-// console.log('=== Middleware file loaded ===');
 import { withAuth } from "next-auth/middleware";
 
 export default withAuth(
@@ -7,9 +6,7 @@ export default withAuth(
   },
   {
     callbacks: {
-      authorized: ({ token, req }) => {
-        // デバッグ用ログ（後で削除予定）
-        // console.log('Middleware - URL:', req.nextUrl.pathname, 'Token:', !!token);
+      authorized: ({ token }) => {
         return !!token; // トークンがあればOK
       },
     },

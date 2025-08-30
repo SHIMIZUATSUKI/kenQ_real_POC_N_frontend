@@ -43,8 +43,8 @@ export async function POST(req: NextRequest) {
       const errorText = await response.text();
       console.error('Backend API error:', errorText);
       return NextResponse.json(
-        { error: 'バックエンドAPIエラー', details: errorText },
-        { status: response.status }
+        { error: 'AI診断処理中にエラーが発生しました' },
+        { status: 500 }
       );
     }
 
